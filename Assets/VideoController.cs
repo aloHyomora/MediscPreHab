@@ -23,7 +23,12 @@ public class VideoController : MonoBehaviour
     videoFiles = GetVideoFilesFromDesktopFolder();
     fileExploerButton.onClick.AddListener(OpenFileExplorer);
   }
-
+  // 
+  public void Test()
+  {
+    videoPlayer.time = 10f;
+  }
+  
   // 현재 사용자의 바탕화면 경로를 반환
   public string GetDesktopPath()
   {
