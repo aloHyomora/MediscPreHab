@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using Button = UnityEngine.UI.Button;
@@ -15,18 +16,95 @@ public class VideoController : MonoBehaviour
   [SerializeField] private VideoPlayer videoPlayer;
   [SerializeField] private Button fileExploerButton;
 
-  
+  public Slider timeSlider;       // 재생 시간을 조절할 슬라이더
+    public Button forwardButton;    // 5초 앞으로 이동 버튼
+    public Button backwardButton;   // 5초 뒤로 이동 버튼
+
+    private bool isPointerOverSlider = false; // 슬라이더에 마우스가 올라갔는지 확인
+
+    void InitVideoUI()
+    {
+      // 비디오가 준비될 때 슬라이더의 최소값과 최대값을 설정합니다.
+      videoPlayer.prepareCompleted += OnVideoPrepared;
+      videoPlayer.Prepare();
+
+      // 이벤트 리스너를 등록합니다.
+      timeSlider.onValueChanged.AddListener(OnSliderValueChanged);
+      forwardButton.onClick.AddListener(Forward);
+      backwardButton.onClick.AddListener(Backward);
+
+      // 슬라이더에 마우스 이벤트 핸들러를 추가합니다.
+      EventTrigger trigger = timeSlider.gameObject.AddComponent<EventTrigger>();
+        
+      EventTrigger.Entry entryEnter = new EventTrigger.Entry();
+      entryEnter.eventID = EventTriggerType.PointerEnter;
+      entryEnter.callback.AddListener((eventData) => { OnPointerEnter(); });
+      trigger.triggers.Add(entryEnter);
+
+      EventTrigger.Entry entryExit = new EventTrigger.Entry();
+      entryExit.eventID = EventTriggerType.PointerExit;
+      entryExit.callback.AddListener((eventData) => { OnPointerExit(); });
+      trigger.triggers.Add(entryExit);
+    }
+    void Update()
+    {
+        if (!isPointerOverSlider)
+        {
+            // 슬라이더의 값을 비디오 플레이어의 현재 시간으로 설정합니다.
+            timeSlider.value = (float)videoPlayer.time;
+        }
+    }
+    void OnVideoPrepared(VideoPlayer vp)
+    {
+      // 비디오가 준비되었을 때 슬라이더의 최소값과 최대값을 설정합니다.
+      timeSlider.minValue = 0;
+      timeSlider.maxValue = (float)videoPlayer.length;
+    }
+    public void OnSliderValueChanged(float value)
+    {
+        if (isPointerOverSlider)
+        {
+            // 마우스가 슬라이더 위에 있는 경우에만 비디오 플레이어의 시간을 변경합니다.
+            videoPlayer.time = value;
+        }
+    }
+
+    void OnPointerEnter()
+    {
+        isPointerOverSlider = true;
+    }
+
+    void OnPointerExit()
+    {
+        isPointerOverSlider = false;
+    }
+
+    void Forward()
+    {
+        // 5초 앞으로 이동합니다.
+        videoPlayer.time += 5;
+        // 슬라이더 값도 업데이트 합니다.
+        timeSlider.value = (float)videoPlayer.time;
+    }
+
+    void Backward()
+    {
+        // 5초 뒤로 이동합니다.
+        videoPlayer.time -= 5;
+        if (videoPlayer.time < 0)
+        {
+            videoPlayer.time = 0;
+        }
+        // 슬라이더 값도 업데이트 합니다.
+        timeSlider.value = (float)videoPlayer.time;
+    }
 
   #endregion
   private void Start()
   {
     videoFiles = GetVideoFilesFromDesktopFolder();
     fileExploerButton.onClick.AddListener(OpenFileExplorer);
-  }
-  // 
-  public void Test()
-  {
-    videoPlayer.time = 10f;
+    InitVideoUI();
   }
   
   // 현재 사용자의 바탕화면 경로를 반환
@@ -83,6 +161,7 @@ public class VideoController : MonoBehaviour
       // VideoPlayer에 파일 경로 설정
       videoPlayer.url = "file://" + selectedFilePath;
       videoPlayer.Play();
+      videoPlayer.Pause();
     }
 
   }
