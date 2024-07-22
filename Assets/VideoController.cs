@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Video;
@@ -15,7 +16,8 @@ public class VideoController : MonoBehaviour
   #region Video Control
   [SerializeField] private VideoPlayer videoPlayer;
   [SerializeField] private Button fileExploerButton;
-
+  [SerializeField] private TextMeshProUGUI timeText;
+  [SerializeField] private TextMeshProUGUI totalTimeText;
   public Slider timeSlider;       // 재생 시간을 조절할 슬라이더
     public Button forwardButton;    // 5초 앞으로 이동 버튼
     public Button backwardButton;   // 5초 뒤로 이동 버튼
@@ -27,7 +29,6 @@ public class VideoController : MonoBehaviour
       // 비디오가 준비될 때 슬라이더의 최소값과 최대값을 설정합니다.
       videoPlayer.prepareCompleted += OnVideoPrepared;
       videoPlayer.Prepare();
-
       // 이벤트 리스너를 등록합니다.
       timeSlider.onValueChanged.AddListener(OnSliderValueChanged);
       forwardButton.onClick.AddListener(Forward);
@@ -52,6 +53,7 @@ public class VideoController : MonoBehaviour
         {
             // 슬라이더의 값을 비디오 플레이어의 현재 시간으로 설정합니다.
             timeSlider.value = (float)videoPlayer.time;
+            ShowCurrentVideoTime();
         }
     }
     void OnVideoPrepared(VideoPlayer vp)
@@ -59,6 +61,8 @@ public class VideoController : MonoBehaviour
       // 비디오가 준비되었을 때 슬라이더의 최소값과 최대값을 설정합니다.
       timeSlider.minValue = 0;
       timeSlider.maxValue = (float)videoPlayer.length;
+      TimeSpan time = TimeSpan.FromSeconds(videoPlayer.length); 
+      totalTimeText.text = string.Format("{0:D2}:{1:D2}", time.Minutes, time.Seconds); // "분:초" 형식으로 문자열을 포맷하고 timeText 텍스트 설정
     }
     public void OnSliderValueChanged(float value)
     {
@@ -66,6 +70,7 @@ public class VideoController : MonoBehaviour
         {
             // 마우스가 슬라이더 위에 있는 경우에만 비디오 플레이어의 시간을 변경합니다.
             videoPlayer.time = value;
+            ShowCurrentVideoTime();
         }
     }
 
@@ -99,6 +104,15 @@ public class VideoController : MonoBehaviour
         timeSlider.value = (float)videoPlayer.time;
     }
 
+    void ShowCurrentVideoTime()
+    {
+      // 비디오 플레이어의 현재 시간을 TimeSpan으로 변환
+      TimeSpan time = TimeSpan.FromSeconds(videoPlayer.time); // 비디오 플레이어의 현재 시간을 TimeSpan 객체로 변환
+
+      // TimeSpan을 "분:초" 형식으로 변환하여 텍스트로 설정
+      timeText.text = string.Format("{0:D2}:{1:D2}", time.Minutes, time.Seconds); // "분:초" 형식으로 문자열을 포맷하고 timeText 텍스트 설정
+    }
+
   #endregion
   private void Start()
   {
@@ -106,7 +120,8 @@ public class VideoController : MonoBehaviour
     fileExploerButton.onClick.AddListener(OpenFileExplorer);
     InitVideoUI();
   }
-  
+
+  #region Video File Managing
   // 현재 사용자의 바탕화면 경로를 반환
   public string GetDesktopPath()
   {
@@ -165,4 +180,5 @@ public class VideoController : MonoBehaviour
     }
 
   }
+  #endregion
 }
