@@ -2979,6 +2979,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   webcamRawImage: {fileID: 1172365341}
   text: {fileID: 251600852}
+  webcamWidth: 0
+  webcamHeight: 0
 --- !u!4 &1016593679
 Transform:
   m_ObjectHideFlags: 0
@@ -7016,7 +7018,7 @@ Canvas:
   m_GameObject: {fileID: 8571076842975818524}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1264297880}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
