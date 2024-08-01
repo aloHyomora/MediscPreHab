@@ -6,12 +6,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Video;
 using UnityEngine.UI;
+using Application = UnityEngine.Application;
 using Button = UnityEngine.UI.Button;
 
 public class VideoController : MonoBehaviour
 {
-  public string folderName = "video";
-  public string[] videoFiles = new string[20];
+  public const string folderName = "video";
+  public string[] videoFiles = new string[10];
 
   #region Video Control
   [SerializeField] private VideoPlayer videoPlayer;
@@ -26,6 +27,8 @@ public class VideoController : MonoBehaviour
 
     void InitVideoUI()
     {
+      Application.targetFrameRate = 60;
+      
       // 비디오가 준비될 때 슬라이더의 최소값과 최대값을 설정합니다.
       videoPlayer.prepareCompleted += OnVideoPrepared;
       videoPlayer.Prepare();
@@ -47,7 +50,7 @@ public class VideoController : MonoBehaviour
       entryExit.callback.AddListener((eventData) => { OnPointerExit(); });
       trigger.triggers.Add(entryExit);
     }
-    void Update()
+    void FixedUpdate()
     {
         if (!isPointerOverSlider)
         {
@@ -156,7 +159,7 @@ public class VideoController : MonoBehaviour
   // public void Play
   
   // 파일 탐색기 열기
-  private void OpenFileExplorer()
+  public void OpenFileExplorer()
   {
     OpenFileDialog openFileDialog = new OpenFileDialog();
 
