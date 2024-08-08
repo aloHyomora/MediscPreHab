@@ -417,7 +417,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &194612485
 MonoBehaviour:
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB098"
+  m_text: Participant
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 73f3f9a1c27b7bb4e94dd6bbe2f496f6, type: 2}
   m_sharedMaterial: {fileID: 8690950160497042282, guid: 73f3f9a1c27b7bb4e94dd6bbe2f496f6,
@@ -467,8 +467,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -599,19 +599,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 195339602}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 695950453}
-        m_TargetAssemblyTypeName: OptimizedVideoPlayer, Assembly-CSharp
-        m_MethodName: SkipTime
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: -5
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &195339602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,9 +1065,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2076982695}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 185.70004, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &317977420
@@ -1211,9 +1199,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2076982695}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 120.70005, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 30, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &336968639
@@ -1758,7 +1746,6 @@ RectTransform:
   - {fileID: 1910042016}
   - {fileID: 195339600}
   - {fileID: 2088382219}
-  - {fileID: 2076982695}
   m_Father: {fileID: 802392470}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2049,7 +2036,6 @@ GameObject:
   - component: {fileID: 695950450}
   - component: {fileID: 695950449}
   - component: {fileID: 695950452}
-  - component: {fileID: 695950453}
   m_Layer: 0
   m_Name: VideoPlayer
   m_TagString: Untagged
@@ -2244,38 +2230,6 @@ MonoBehaviour:
   timeSlider: {fileID: 1215617170}
   forwardButton: {fileID: 2088382220}
   backwardButton: {fileID: 195339601}
---- !u!114 &695950453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 695950448}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9229f2262d63f8845bd24cd2cde7e8db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  videoFiles:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  videoPlayer: {fileID: 695950450}
-  audioSource: {fileID: 695950449}
-  isBuffering: 1
-  isPlaying: 0
-  testBufferCount: 0
-  fileExploerButton: {fileID: 456048769}
-  timeText: {fileID: 1706623234}
-  totalTimeText: {fileID: 317977420}
-  timeSlider: {fileID: 1215617170}
 --- !u!1 &700110991
 GameObject:
   m_ObjectHideFlags: 0
@@ -3563,7 +3517,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1224849256
 MonoBehaviour:
@@ -3585,7 +3539,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC15\uC0AC"
+  m_text: Instructor
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 73f3f9a1c27b7bb4e94dd6bbe2f496f6, type: 2}
   m_sharedMaterial: {fileID: 8690950160497042282, guid: 73f3f9a1c27b7bb4e94dd6bbe2f496f6,
@@ -3613,8 +3567,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4372,7 +4326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1625996803
 Transform:
   m_ObjectHideFlags: 0
@@ -4695,9 +4649,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2076982695}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 55.7, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1706623234
@@ -6066,17 +6020,17 @@ RectTransform:
   m_GameObject: {fileID: 2076982694}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3.1578948, z: 3.1578948}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1706623233}
   - {fileID: 336968638}
   - {fileID: 317977419}
-  m_Father: {fileID: 467946506}
+  m_Father: {fileID: 8571076842975818496}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 429, y: -132}
   m_SizeDelta: {x: 230, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2076982696
@@ -6086,7 +6040,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076982694}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
   m_Name: 
@@ -6187,19 +6141,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2088382221}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 695950453}
-        m_TargetAssemblyTypeName: OptimizedVideoPlayer, Assembly-CSharp
-        m_MethodName: SkipTime
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 5
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2088382221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7087,6 +7029,7 @@ RectTransform:
   - {fileID: 8571076842800566849}
   - {fileID: 281806255}
   - {fileID: 456048768}
+  - {fileID: 2076982695}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
