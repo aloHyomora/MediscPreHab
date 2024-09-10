@@ -22,7 +22,8 @@ public class WebcamPlayer : MonoBehaviour
   {
     ResetWebCam();
     
-    WebCamDevice device = WebCamTexture.devices[0];
+    WebCamDevice device = WebCamTexture.devices[1]; // 부착 웹캠 인덱스 0 -> 1번으로 변경
+    
     _webCamTexture = new WebCamTexture(device.name,640,360);
     
     /*Debug.Log(webcamRawImage.texture.height);
